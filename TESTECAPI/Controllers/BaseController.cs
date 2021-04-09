@@ -10,10 +10,6 @@ namespace TESTECAPI.Controllers
 {
     public class BaseController : ApiController
     {
-        //public IHttpActionResult CadastrarCliente()
-        //{
-        //    CadastrarClienteResponse response = new CadastrarClienteResponse();
-        //    return CreatedAtRoute("DefaultApi", new { }, response);
-        //}
+       
     }
 }
