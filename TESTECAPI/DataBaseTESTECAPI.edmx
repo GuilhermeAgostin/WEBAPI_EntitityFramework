@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TESTECAPIModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TB_Cliente">
+          <Key>
+            <PropertyRef Name="IdCliente" />
+          </Key>
+          <Property Name="IdCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdPerfil" Type="int" />
+          <Property Name="Telefone" Type="varchar" MaxLength="14" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CPF" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="DataCadastro" Type="datetime" Nullable="false" />
+          <Property Name="DataNasc" Type="datetime" Nullable="false" />
+          <Property Name="Sexo" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="UltimaAtualizacao" Type="datetime" />
+          <Property Name="Removido" Type="bit" />
+        </EntityType>
+        <EntityType Name="TB_Endereco">
+          <Key>
+            <PropertyRef Name="IdEndereco" />
+          </Key>
+          <Property Name="IdEndereco" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Numero" Type="int" Nullable="false" />
+          <Property Name="Complemento" Type="varchar" MaxLength="100" />
+          <Property Name="Bairro" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Municipio" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CEP" Type="varchar" MaxLength="9" Nullable="false" />
+          <Property Name="IdCliente" Type="int" Nullable="false" />
+          <Property Name="PontoReferencia" Type="varchar" MaxLength="100" />
+          <Property Name="Latitude" Type="varchar" MaxLength="20" />
+          <Property Name="Longitude" Type="varchar" MaxLength="20" />
+          <Property Name="Estado" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="Removido" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TB_Perfil">
+          <Key>
+            <PropertyRef Name="IdPerfil" />
+          </Key>
+          <Property Name="IdPerfil" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Removido" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__TB_Client__IdPer__38996AB5">
+          <End Role="TB_Perfil" Type="Self.TB_Perfil" Multiplicity="0..1" />
+          <End Role="TB_Cliente" Type="Self.TB_Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_Perfil">
+              <PropertyRef Name="IdPerfil" />
+            </Principal>
+            <Dependent Role="TB_Cliente">
+              <PropertyRef Name="IdPerfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_Endere__IdCli__66603565">
+          <End Role="TB_Cliente" Type="Self.TB_Cliente" Multiplicity="1" />
+          <End Role="TB_Endereco" Type="Self.TB_Endereco" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_Cliente">
+              <PropertyRef Name="IdCliente" />
+            </Principal>
+            <Dependent Role="TB_Endereco">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TESTECAPIModelStoreContainer">
+          <EntitySet Name="TB_Cliente" EntityType="Self.TB_Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_Endereco" EntityType="Self.TB_Endereco" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_Perfil" EntityType="Self.TB_Perfil" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__TB_Client__IdPer__38996AB5" Association="Self.FK__TB_Client__IdPer__38996AB5">
+            <End Role="TB_Perfil" EntitySet="TB_Perfil" />
+            <End Role="TB_Cliente" EntitySet="TB_Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_Endere__IdCli__66603565" Association="Self.FK__TB_Endere__IdCli__66603565">
+            <End Role="TB_Cliente" EntitySet="TB_Cliente" />
+            <End Role="TB_Endereco" EntitySet="TB_Endereco" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TESTECAPIModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TESTECAPIEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TB_Cliente" EntityType="TESTECAPIModel.TB_Cliente" />
+          <EntitySet Name="TB_Endereco" EntityType="TESTECAPIModel.TB_Endereco" />
+          <EntitySet Name="TB_Perfil" EntityType="TESTECAPIModel.TB_Perfil" />
+          <AssociationSet Name="FK__TB_Client__IdPer__38996AB5" Association="TESTECAPIModel.FK__TB_Client__IdPer__38996AB5">
+            <End Role="TB_Perfil" EntitySet="TB_Perfil" />
+            <End Role="TB_Cliente" EntitySet="TB_Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_Endere__IdCli__66603565" Association="TESTECAPIModel.FK__TB_Endere__IdCli__66603565">
+            <End Role="TB_Cliente" EntitySet="TB_Cliente" />
+            <End Role="TB_Endereco" EntitySet="TB_Endereco" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="TB_Cliente">
+          <Key>
+            <PropertyRef Name="IdCliente" />
+          </Key>
+          <Property Name="IdCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IdPerfil" Type="Int32" />
+          <Property Name="Telefone" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CPF" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="DataCadastro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DataNasc" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Sexo" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="UltimaAtualizacao" Type="DateTime" Precision="3" />
+          <Property Name="Removido" Type="Boolean" />
+          <NavigationProperty Name="TB_Perfil" Relationship="TESTECAPIModel.FK__TB_Client__IdPer__38996AB5" FromRole="TB_Cliente" ToRole="TB_Perfil" />
+          <NavigationProperty Name="TB_Endereco" Relationship="TESTECAPIModel.FK__TB_Endere__IdCli__66603565" FromRole="TB_Cliente" ToRole="TB_Endereco" />
+        </EntityType>
+        <EntityType Name="TB_Endereco">
+          <Key>
+            <PropertyRef Name="IdEndereco" />
+          </Key>
+          <Property Name="IdEndereco" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Numero" Type="Int32" Nullable="false" />
+          <Property Name="Complemento" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Bairro" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Municipio" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CEP" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="IdCliente" Type="Int32" Nullable="false" />
+          <Property Name="PontoReferencia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Latitude" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Longitude" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="Removido" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TB_Cliente" Relationship="TESTECAPIModel.FK__TB_Endere__IdCli__66603565" FromRole="TB_Endereco" ToRole="TB_Cliente" />
+        </EntityType>
+        <EntityType Name="TB_Perfil">
+          <Key>
+            <PropertyRef Name="IdPerfil" />
+          </Key>
+          <Property Name="IdPerfil" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Removido" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TB_Cliente" Relationship="TESTECAPIModel.FK__TB_Client__IdPer__38996AB5" FromRole="TB_Perfil" ToRole="TB_Cliente" />
+        </EntityType>
+        <Association Name="FK__TB_Client__IdPer__38996AB5">
+          <End Type="TESTECAPIModel.TB_Perfil" Role="TB_Perfil" Multiplicity="0..1" />
+          <End Type="TESTECAPIModel.TB_Cliente" Role="TB_Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_Perfil">
+              <PropertyRef Name="IdPerfil" />
+            </Principal>
+            <Dependent Role="TB_Cliente">
+              <PropertyRef Name="IdPerfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_Endere__IdCli__66603565">
+          <End Type="TESTECAPIModel.TB_Cliente" Role="TB_Cliente" Multiplicity="1" />
+          <End Type="TESTECAPIModel.TB_Endereco" Role="TB_Endereco" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_Cliente">
+              <PropertyRef Name="IdCliente" />
+            </Principal>
+            <Dependent Role="TB_Endereco">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TESTECAPIModelStoreContainer" CdmEntityContainer="TESTECAPIEntities">
+          <EntitySetMapping Name="TB_Cliente">
+            <EntityTypeMapping TypeName="TESTECAPIModel.TB_Cliente">
+              <MappingFragment StoreEntitySet="TB_Cliente">
+                <ScalarProperty Name="Removido" ColumnName="Removido" />
+                <ScalarProperty Name="UltimaAtualizacao" ColumnName="UltimaAtualizacao" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+                <ScalarProperty Name="DataNasc" ColumnName="DataNasc" />
+                <ScalarProperty Name="DataCadastro" ColumnName="DataCadastro" />
+                <ScalarProperty Name="CPF" ColumnName="CPF" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+                <ScalarProperty Name="IdPerfil" ColumnName="IdPerfil" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_Endereco">
+            <EntityTypeMapping TypeName="TESTECAPIModel.TB_Endereco">
+              <MappingFragment StoreEntitySet="TB_Endereco">
+                <ScalarProperty Name="Removido" ColumnName="Removido" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="PontoReferencia" ColumnName="PontoReferencia" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="CEP" ColumnName="CEP" />
+                <ScalarProperty Name="Municipio" ColumnName="Municipio" />
+                <ScalarProperty Name="Bairro" ColumnName="Bairro" />
+                <ScalarProperty Name="Complemento" ColumnName="Complemento" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="IdEndereco" ColumnName="IdEndereco" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_Perfil">
+            <EntityTypeMapping TypeName="TESTECAPIModel.TB_Perfil">
+              <MappingFragment StoreEntitySet="TB_Perfil">
+                <ScalarProperty Name="Removido" ColumnName="Removido" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="IdPerfil" ColumnName="IdPerfil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

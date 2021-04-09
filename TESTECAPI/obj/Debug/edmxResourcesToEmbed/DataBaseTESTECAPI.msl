@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TESTECAPIModelStoreContainer" CdmEntityContainer="TESTECAPIEntities">
+    <EntitySetMapping Name="TB_Cliente">
+      <EntityTypeMapping TypeName="TESTECAPIModel.TB_Cliente">
+        <MappingFragment StoreEntitySet="TB_Cliente">
+          <ScalarProperty Name="Removido" ColumnName="Removido" />
+          <ScalarProperty Name="UltimaAtualizacao" ColumnName="UltimaAtualizacao" />
+          <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+          <ScalarProperty Name="DataNasc" ColumnName="DataNasc" />
+          <ScalarProperty Name="DataCadastro" ColumnName="DataCadastro" />
+          <ScalarProperty Name="CPF" ColumnName="CPF" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+          <ScalarProperty Name="IdPerfil" ColumnName="IdPerfil" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TB_Endereco">
+      <EntityTypeMapping TypeName="TESTECAPIModel.TB_Endereco">
+        <MappingFragment StoreEntitySet="TB_Endereco">
+          <ScalarProperty Name="Removido" ColumnName="Removido" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="PontoReferencia" ColumnName="PontoReferencia" />
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="CEP" ColumnName="CEP" />
+          <ScalarProperty Name="Municipio" ColumnName="Municipio" />
+          <ScalarProperty Name="Bairro" ColumnName="Bairro" />
+          <ScalarProperty Name="Complemento" ColumnName="Complemento" />
+          <ScalarProperty Name="Numero" ColumnName="Numero" />
+          <ScalarProperty Name="IdEndereco" ColumnName="IdEndereco" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TB_Perfil">
+      <EntityTypeMapping TypeName="TESTECAPIModel.TB_Perfil">
+        <MappingFragment StoreEntitySet="TB_Perfil">
+          <ScalarProperty Name="Removido" ColumnName="Removido" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="IdPerfil" ColumnName="IdPerfil" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

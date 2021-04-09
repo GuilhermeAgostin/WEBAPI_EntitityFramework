@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TESTECAPIModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="TB_Cliente">
+    <Key>
+      <PropertyRef Name="IdCliente" />
+    </Key>
+    <Property Name="IdCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IdPerfil" Type="int" />
+    <Property Name="Telefone" Type="varchar" MaxLength="14" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CPF" Type="varchar" MaxLength="11" Nullable="false" />
+    <Property Name="DataCadastro" Type="datetime" Nullable="false" />
+    <Property Name="DataNasc" Type="datetime" Nullable="false" />
+    <Property Name="Sexo" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="UltimaAtualizacao" Type="datetime" />
+    <Property Name="Removido" Type="bit" />
+  </EntityType>
+  <EntityType Name="TB_Endereco">
+    <Key>
+      <PropertyRef Name="IdEndereco" />
+    </Key>
+    <Property Name="IdEndereco" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Numero" Type="int" Nullable="false" />
+    <Property Name="Complemento" Type="varchar" MaxLength="100" />
+    <Property Name="Bairro" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Municipio" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CEP" Type="varchar" MaxLength="9" Nullable="false" />
+    <Property Name="IdCliente" Type="int" Nullable="false" />
+    <Property Name="PontoReferencia" Type="varchar" MaxLength="100" />
+    <Property Name="Latitude" Type="varchar" MaxLength="20" />
+    <Property Name="Longitude" Type="varchar" MaxLength="20" />
+    <Property Name="Estado" Type="varchar" MaxLength="2" Nullable="false" />
+    <Property Name="Removido" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TB_Perfil">
+    <Key>
+      <PropertyRef Name="IdPerfil" />
+    </Key>
+    <Property Name="IdPerfil" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Removido" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__TB_Client__IdPer__38996AB5">
+    <End Role="TB_Perfil" Type="Self.TB_Perfil" Multiplicity="0..1" />
+    <End Role="TB_Cliente" Type="Self.TB_Cliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Perfil">
+        <PropertyRef Name="IdPerfil" />
+      </Principal>
+      <Dependent Role="TB_Cliente">
+        <PropertyRef Name="IdPerfil" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TB_Endere__IdCli__66603565">
+    <End Role="TB_Cliente" Type="Self.TB_Cliente" Multiplicity="1" />
+    <End Role="TB_Endereco" Type="Self.TB_Endereco" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Cliente">
+        <PropertyRef Name="IdCliente" />
+      </Principal>
+      <Dependent Role="TB_Endereco">
+        <PropertyRef Name="IdCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TESTECAPIModelStoreContainer">
+    <EntitySet Name="TB_Cliente" EntityType="Self.TB_Cliente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TB_Endereco" EntityType="Self.TB_Endereco" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TB_Perfil" EntityType="Self.TB_Perfil" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__TB_Client__IdPer__38996AB5" Association="Self.FK__TB_Client__IdPer__38996AB5">
+      <End Role="TB_Perfil" EntitySet="TB_Perfil" />
+      <End Role="TB_Cliente" EntitySet="TB_Cliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TB_Endere__IdCli__66603565" Association="Self.FK__TB_Endere__IdCli__66603565">
+      <End Role="TB_Cliente" EntitySet="TB_Cliente" />
+      <End Role="TB_Endereco" EntitySet="TB_Endereco" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

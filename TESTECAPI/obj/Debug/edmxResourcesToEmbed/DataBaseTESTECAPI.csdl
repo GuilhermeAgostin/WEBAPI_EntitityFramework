@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TESTECAPIModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="TESTECAPIEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="TB_Cliente" EntityType="TESTECAPIModel.TB_Cliente" />
+    <EntitySet Name="TB_Endereco" EntityType="TESTECAPIModel.TB_Endereco" />
+    <EntitySet Name="TB_Perfil" EntityType="TESTECAPIModel.TB_Perfil" />
+    <AssociationSet Name="FK__TB_Client__IdPer__38996AB5" Association="TESTECAPIModel.FK__TB_Client__IdPer__38996AB5">
+      <End Role="TB_Perfil" EntitySet="TB_Perfil" />
+      <End Role="TB_Cliente" EntitySet="TB_Cliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TB_Endere__IdCli__66603565" Association="TESTECAPIModel.FK__TB_Endere__IdCli__66603565">
+      <End Role="TB_Cliente" EntitySet="TB_Cliente" />
+      <End Role="TB_Endereco" EntitySet="TB_Endereco" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="TB_Cliente">
+    <Key>
+      <PropertyRef Name="IdCliente" />
+    </Key>
+    <Property Name="IdCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IdPerfil" Type="Int32" />
+    <Property Name="Telefone" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CPF" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="DataCadastro" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DataNasc" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Sexo" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="UltimaAtualizacao" Type="DateTime" Precision="3" />
+    <Property Name="Removido" Type="Boolean" />
+    <NavigationProperty Name="TB_Perfil" Relationship="TESTECAPIModel.FK__TB_Client__IdPer__38996AB5" FromRole="TB_Cliente" ToRole="TB_Perfil" />
+    <NavigationProperty Name="TB_Endereco" Relationship="TESTECAPIModel.FK__TB_Endere__IdCli__66603565" FromRole="TB_Cliente" ToRole="TB_Endereco" />
+  </EntityType>
+  <EntityType Name="TB_Endereco">
+    <Key>
+      <PropertyRef Name="IdEndereco" />
+    </Key>
+    <Property Name="IdEndereco" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Numero" Type="Int32" Nullable="false" />
+    <Property Name="Complemento" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Bairro" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Municipio" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CEP" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="false" />
+    <Property Name="IdCliente" Type="Int32" Nullable="false" />
+    <Property Name="PontoReferencia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Latitude" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Longitude" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Estado" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="Removido" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="TB_Cliente" Relationship="TESTECAPIModel.FK__TB_Endere__IdCli__66603565" FromRole="TB_Endereco" ToRole="TB_Cliente" />
+  </EntityType>
+  <EntityType Name="TB_Perfil">
+    <Key>
+      <PropertyRef Name="IdPerfil" />
+    </Key>
+    <Property Name="IdPerfil" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Removido" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="TB_Cliente" Relationship="TESTECAPIModel.FK__TB_Client__IdPer__38996AB5" FromRole="TB_Perfil" ToRole="TB_Cliente" />
+  </EntityType>
+  <Association Name="FK__TB_Client__IdPer__38996AB5">
+    <End Type="TESTECAPIModel.TB_Perfil" Role="TB_Perfil" Multiplicity="0..1" />
+    <End Type="TESTECAPIModel.TB_Cliente" Role="TB_Cliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Perfil">
+        <PropertyRef Name="IdPerfil" />
+      </Principal>
+      <Dependent Role="TB_Cliente">
+        <PropertyRef Name="IdPerfil" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TB_Endere__IdCli__66603565">
+    <End Type="TESTECAPIModel.TB_Cliente" Role="TB_Cliente" Multiplicity="1" />
+    <End Type="TESTECAPIModel.TB_Endereco" Role="TB_Endereco" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Cliente">
+        <PropertyRef Name="IdCliente" />
+      </Principal>
+      <Dependent Role="TB_Endereco">
+        <PropertyRef Name="IdCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
