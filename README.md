@@ -1,3 +1,3 @@
-# WEBAPI EntitityFramework
+# WEB API Entitity Framework
 
-Desenvolvimento de  WEBAPI RESTful com Entity Framework.
+Desenvolvimento de  Web API RESTful com Entity Framework.
